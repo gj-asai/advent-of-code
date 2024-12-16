@@ -6,27 +6,27 @@ struct Rule
     second::Int64
 end
 
-rules = Rule[]
-updates = Vector{Int64}[]
+rules = Vector{Rule}()
+updates = Vector{Vector{Int}}()
 
 open(filename, "r") do f
     while !eof(f)
         line = readline(f)
         isempty(line) && break # no more rules
         push!(rules,
-            Rule([parse(Int64, n) for n in split(line, "|")]...)
+            Rule([parse(Int, n) for n in split(line, "|")]...)
         )
     end
 
     while !eof(f)
         line = readline(f)
         push!(updates,
-            [parse(Int64, n) for n in split(line, ",")]
+            [parse(Int, n) for n in split(line, ",")]
         )
     end
 end
 
-function check(update, rules)
+function check(update::Vector{Int}, rules::Vector{Rule})
     for rule in rules
         rule.first in update || continue
         rule.second in update || continue

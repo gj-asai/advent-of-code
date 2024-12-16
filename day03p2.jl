@@ -14,8 +14,8 @@ open(filename, "r") do f
             elseif m.match == "don't()"
                 global enabled = false
             elseif enabled
-                n1 = parse(Int64, m.captures[1])
-                n2 = parse(Int64, m.captures[2])
+                n1 = parse(Int, m.captures[1])
+                n2 = parse(Int, m.captures[2])
                 global ans += n1 * n2
             end
         end

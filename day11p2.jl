@@ -1,8 +1,9 @@
 filename = "day11/input.txt"
 # filename = "day11/test.txt"
 
+stones = Vector{Int}()
 open(filename, "r") do f
-    global stones = readline(f) |> split .|> x -> parse(Int64, x)
+    global stones = readline(f) |> split .|> x -> parse(Int, x)
 end
 
 function blink(stone, times)

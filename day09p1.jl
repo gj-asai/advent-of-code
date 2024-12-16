@@ -1,6 +1,7 @@
 filename = "day09/input.txt"
 # filename = "day09/test.txt"
 
+diskmap = Vector{Char}()
 open(filename, "r") do f
     global diskmap = readline(f) |> collect .|> x -> parse(Int64, x)
 end
@@ -10,7 +11,7 @@ struct Block
     len::Int64
 end
 
-blocks = Block[]
+blocks = Vector{Block}()
 id = 0
 free = false
 for len in diskmap

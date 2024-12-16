@@ -5,8 +5,8 @@ w = 101
 h = 103
 
 struct Robot
-    p::Tuple{Int64,Int64}
-    v::Tuple{Int64,Int64}
+    p::Tuple{Int,Int}
+    v::Tuple{Int,Int}
 end
 
 function walk(r::Robot, w, h, time)
@@ -20,7 +20,7 @@ end
 robots = Robot[]
 open(filename, "r") do f
     for line in eachline(f)
-        px, py, vx, vy = match(r"p=(-?\d+),(-?\d+) v=(-?\d+),(-?\d+)", line).captures .|> x -> parse(Int64, x)
+        px, py, vx, vy = match(r"p=(-?\d+),(-?\d+) v=(-?\d+),(-?\d+)", line).captures .|> x -> parse(Int, x)
         push!(robots, Robot((px, py), (vx, vy)))
     end
 end

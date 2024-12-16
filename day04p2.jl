@@ -1,15 +1,16 @@
 filename = "day04/input.txt"
 # filename = "day04/test.txt"
 
+matrix = Matrix{Char}(undef, 0, 0)
 open(filename, "r") do f
     global matrix = map(collect, readlines(f))
     matrix = permutedims(hcat(matrix...))
 end
 
-ne(pos) = pos .+ (-1, 1)
-se(pos) = pos .+ (1, 1)
-sw(pos) = pos .+ (1, -1)
-nw(pos) = pos .+ (-1, -1)
+ne(pos) = pos + CartesianIndex(-1, 1)
+se(pos) = pos + CartesianIndex(1, 1)
+sw(pos) = pos + CartesianIndex(1, -1)
+nw(pos) = pos + CartesianIndex(-1, -1)
 
 read(pos) = get(matrix, pos, "")
 
@@ -32,7 +33,7 @@ function xmas(pos)
 end
 
 count = 0
-for i in axes(matrix, 2), j in axes(matrix, 1)
-    global count += xmas((i, j))
+for pos in eachindex(IndexCartesian(), matrix)
+    global count += xmas(pos)
 end
 count

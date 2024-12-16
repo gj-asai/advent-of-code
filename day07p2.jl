@@ -1,7 +1,7 @@
 filename = "day07/input.txt"
 # filename = "day07/test.txt"
 
-function is_possible(result, numbers, partial=0)
+function is_possible(result::Int, numbers::Vector{Int}, partial::Int=0)
     length(numbers) == 0 && return partial == result
     result < partial && return false
 
@@ -17,7 +17,7 @@ end
 ans = 0
 open(filename, "r") do f
     for line in eachline(f)
-        result, numbers... = split(line, [':', ' '], keepempty=false) .|> x -> parse(Int64, x)
+        result, numbers... = split(line, [':', ' '], keepempty=false) .|> x -> parse(Int, x)
         is_possible(result, numbers) && (global ans += result)
     end
 end

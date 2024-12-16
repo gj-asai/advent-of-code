@@ -2,9 +2,9 @@ filename = "day13/input.txt"
 # filename = "day13/test.txt"
 
 struct Machine
-    a::Tuple{Int64,Int64}
-    b::Tuple{Int64,Int64}
-    prize::Tuple{Int64,Int64}
+    a::Tuple{Int,Int}
+    b::Tuple{Int,Int}
+    prize::Tuple{Int,Int}
 end
 
 machines = Machine[]
