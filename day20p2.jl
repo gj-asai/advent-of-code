@@ -23,7 +23,14 @@ function cheat(path, pos)
 
     saved = Int[]
     for time = 2:20, i = 0:time
-        reach = [(i, time - i), (-i, i - time), (i, i - time), (-i, time - i)] |> Set
+        if i == 0
+            reach = [(i, time - i), (i, i - time)]
+        elseif i == time
+            reach = [(i, time - i), (-i, i - time)]
+        else
+            reach = [(i, time - i), (-i, i - time), (i, i - time), (-i, time - i)]
+        end
+
         for nextpos in pos .+ CartesianIndex.(reach)
             checkbounds(Bool, path, nextpos) || continue
             path[nextpos] > path[pos] + time || continue
