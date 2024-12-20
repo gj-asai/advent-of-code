@@ -16,7 +16,7 @@ function is_possible(design, towels)
     length(design) == 0 && return true
     for t in towels
         length(t) <= length(design) || continue
-        t == view(design, 1:length(t)) || continue
+        startswith(design, t) || continue
         is_possible(design[length(t)+1:end], towels) || continue
         return true
     end

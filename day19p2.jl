@@ -20,7 +20,7 @@ function possible_arrangements(design, towels)
     total = 0
     for t in towels
         length(t) <= length(design) || continue
-        t == view(design, 1:length(t)) || continue
+        startswith(design, t) || continue
         total += possible_arrangements(design[length(t)+1:end], towels)
     end
     return known[design] = total
