@@ -12,17 +12,17 @@ open(filename, "r") do f
     end
 end
 
-loops = Vector{Vector{String}}()
-push!(loops, [])
-for pc in keys(connectivity), loop in loops
-    loop ⊆ connectivity[pc] || continue
-    new_loop = copy(loop)
-    push!(new_loop, pc)
-    push!(loops, new_loop)
+cliques = Vector{Vector{String}}()
+push!(cliques, [])
+for pc in keys(connectivity), clique in cliques
+    clique ⊆ connectivity[pc] || continue
+    new_clique = copy(clique)
+    push!(new_clique, pc)
+    push!(cliques, new_clique)
 end
 
 largest = []
-for loop in loops
-    length(loop) > length(largest) && (global largest = loop)
+for clique in cliques
+    length(clique) > length(largest) && (global largest = clique)
 end
 join(sort!(largest), ",") |> println
